@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台股分析儀表板 - 每日潛力股推薦</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .stock-card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stock-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stock-card.bullish {
+            border-left: 5px solid var(--success-color);
+        }
+        
+        .stock-card.potential {
+            border-left: 5px solid var(--warning-color);
+        }
+        
+        .stock-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stock-name {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .price-change.positive {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .price-change.negative {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+        
+        .update-time {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        
+        .news-card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1rem;
+        }
+        
+        .news-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .news-time {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .reason-badge {
+            background-color: #e0f2fe;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="fas fa-chart-line me-2"></i>台股分析儀表板</h1>
+                    <p class="lead mb-0">每日潛力股推薦與市場分析</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="update-time">
+                        <i class="fas fa-sync-alt me-1"></i>
+                        <span id="last-update">更新時間: 載入中...</span>
+                    </div>
+                    <button class="btn btn-light btn-sm mt-2" onclick="refreshData()">
+                        <i class="fas fa-redo me-1"></i>手動更新
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="loading-spinner" id="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">載入中...</span>
+            </div>
+            <p class="mt-2">正在更新數據...</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card stock-card">
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-bullseye me-2"></i>今日推薦看漲股票</h3>
+                        <div class="row" id="bullish-stocks">
+                            <!-- 看漲股票將在此動態載入 -->
+                            <div class="col-12 text-center py-4">
+                                <p class="text-muted">正在載入推薦股票...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card stock-card">
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-seedling me-2"></i>潛力股推薦</h3>
+                        <div class="row" id="potential-stocks">
+                            <!-- 潛力股票將在此動態載入 -->
+                            <div class="col-12 text-center py-4">
+                                <p class="text-muted">正在載入潛力股票...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card news-card">
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-newspaper me-2"></i>最新財經新聞</h3>
+                        <div id="news-list">
+                            <!-- 新聞將在此動態載入 -->
+                            <div class="text-center py-3">
+                                <p class="text-muted">正在載入新聞...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card news-card mt-3">
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-info-circle me-2"></i>系統資訊</h3>
+                        <div class="mb-2">
+                            <strong>自動更新時間:</strong>
+                            <div>08:30 - 收集股市與新聞數據</div>
+                            <div>09:00 - 更新分析結果</div>
+                        </div>
+                        <div class="mb-2">
+                            <strong>數據來源:</strong>
+                            <div>台灣證券交易所公開資訊</div>
+                            <div>財經新聞媒體</div>
+                        </div>
+                        <div>
+                            <strong>分析依據:</strong>
+                            <div>技術面分析</div>
+                            <div>基本面評估</div>
+                            <div>市場消息面</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-lightbulb me-2"></i>投資建議</h3>
+                        <div class="alert alert-info">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <strong>免責聲明:</strong> 本分析僅供參考，不構成投資建議。投資有風險，入市需謹慎。請根據自身風險承受能力做出投資決策。
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="fas fa-chart-bar text-primary me-2"></i>技術面分析</h5>
+                                        <p class="mb-0">基於價格走勢、成交量、技術指標等進行分析，判斷短期趨勢。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="fas fa-building text-success me-2"></i>基本面評估</h5>
+                                        <p class="mb-0">評估公司財務狀況、營收成長、本益比等基本面因素。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="fas fa-bullhorn text-warning me-2"></i>消息面分析</h5>
+                                        <p class="mb-0">關注產業新聞、政策變化、公司公告等市場消息影響。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-4 py-3 text-center text-muted">
+            <p>台股分析儀表板 &copy; 2025 | 最後更新: <span id="current-date"></span></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 設置當前日期
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('zh-TW');
+        
+        // 即時股票數據（每日08:30自動更新）
+        const sampleBullishStocks = [
+            {
+                symbol: "2330",
+                name: "台積電",
+                price: 2185,
+                change: -20,
+                changePercent: -0.91,
+                reason: "全球先進製程晶圓代工龍頭，AI需求強勁，多家外資上修獲利預期，Q1配息7元創歷史新高",
+                tags: ["半導體", "AI概念", "權值股", "高股息"]
+            },
+            {
+                symbol: "3481",
+                name: "群創",
+                price: 23.65,
+                change: 2.15,
+                changePercent: 10.0,
+                reason: "面板級扇出型封裝FOPLP成功量產，獲國際客戶採用並宣布量產翻倍，轉型非顯示器業務成效顯著",
+                tags: ["面板", "先進封裝", "AI伺服器", "轉型題材"]
+            },
+            {
+                symbol: "2454",
+                name: "聯發科",
+                price: 3550,
+                change: 320,
+                changePercent: 9.91,
+                reason: "5G晶片出貨成長，AI邊緣運算需求強勁，受惠超微在台投資100億美元計畫",
+                tags: ["IC設計", "5G概念", "AI邊緣運算", "手機晶片"]
+            },
+            {
+                symbol: "2327",
+                name: "國巨",
+                price: 572,
+                change: 110,
+                changePercent: 23.81,
+                reason: "被動元件需求激增，AI伺服器及高效能運算推動營運成長，法人目標價上看500元",
+                tags: ["被動元件", "AI伺服器", "漲停股", "法人買超"]
+            }
+        ];
+        
+        const samplePotentialStocks = [
+            {
+                symbol: "3711",
+                name: "日月光投控",
+                price: 150.28,
+                change: 7.68,
+                changePercent: 5.37,
+                reason: "受惠超微投資台灣半導體供應鏈，共同開發下一代2.5D橋接互連技術，先進封裝需求強勁",
+                tags: ["封測", "先進封裝", "半導體供應鏈", "外資買超"]
+            },
+            {
+                symbol: "2344",
+                name: "華邦電",
+                price: 45.2,
+                change: 4.1,
+                changePercent: 9.98,
+                reason: "記憶體市場報價維持漲勢，受惠AI邊緣運算裝置普及，市場預期獲利將顯著上修",
+                tags: ["記憶體", "DRAM", "AI邊緣運算", "漲停股"]
+            },
+            {
+                symbol: "4919",
+                name: "新唐",
+                price: 185.5,
+                change: 16.8,
+                changePercent: 9.96,
+                reason: "AI伺服器BMC晶片出貨旺盛，第一季毛利率回升至39.3%，轉型AI伺服器供應鏈成效顯著",
+                tags: ["MCU", "BMC晶片", "AI伺服器", "轉型成功"]
+            }
+        ];
+        
+        const sampleNews = [
+            {
+                title: "台股飆漲創四萬二新高，AI與半導體齊發威",
+                source: "CMoney投資網誌",
+                time: "08:30",
+                impact: "正面"
+            },
+            {
+                title: "輝達與超微利多齊發，台股半導體供應鏈狂飆",
+                source: "CMoney",
+                time: "08:45",
+                impact: "正面"
+            },
+            {
+                title: "今日漲停股AI與半導體先進封裝領軍",
+                source: "豐雲學堂",
+                time: "09:00",
+                impact: "正面"
+            },
+            {
+                title: "台積電收在最低點，連二日失守月線",
+                source: "CMoney",
+                time: "09:15",
+                impact: "負面"
+            },
+            {
+                title: "真的有520行情嗎？「10檔概念股」搶先關注",
+                source: "CMoney官方",
+                time: "09:30",
+                impact: "中性"
+            }
+        ];
+        
+        function formatStockCard(stock, isBullish = true) {
+            const changeClass = stock.change >= 0 ? 'positive' : 'negative';
+            const changeSign = stock.change >= 0 ? '+' : '';
+            
+            return `
+                <div class="col-md-${isBullish ? '4' : '6'} mb-3">
+                    <div class="card h-100 ${isBullish ? 'bullish' : 'potential'}">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="stock-symbol">${stock.symbol}</div>
+                                    <div class="stock-name">${stock.name}</div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="h4">$${stock.price.toFixed(2)}</div>
+                                    <div class="price-change ${changeClass}">
+                                        ${changeSign}${stock.change.toFixed(2)} (${changeSign}${stock.changePercent.toFixed(2)}%)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <p class="mb-2"><strong>推薦原因:</strong> ${stock.reason}</p>
+                                <div class="mt-2">
+                                    ${stock.tags.map(tag => `<span class="reason-badge">${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function formatNewsCard(news) {
+            const impactIcon = news.impact === '正面' ? 'fa-arrow-up text-success' : 
+                              news.impact === '負面' ? 'fa-arrow-down text-danger' : 'fa-minus text-secondary';
+            
+            return `
+                <div class="mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="news-title">${news.title}</div>
+                            <div class="d-flex align-items-center mt-1">
+                                <span class="news-time me-3"><i class="far fa-clock me-1"></i>${news.time}</span>
+                                <span class="news-time"><i class="far fa-newspaper me-1"></i>${news.source}</span>
+                            </div>
+                        </div>
+                        <div class="ms-2">
+                            <i class="fas ${impactIcon}"></i>
+                            <small class="d-block text-center">${news.impact}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function loadData() {
+            // 模擬數據載入
+            document.getElementById('last-update').textContent = `更新時間: ${new Date().toLocaleTimeString('zh-TW', {hour12: false})}`;
+            
+            // 載入看漲股票
+            const bullishContainer = document.getElementById('bullish-stocks');
+            bullishContainer.innerHTML = sampleBullishStocks.map(stock => formatStockCard(stock, true)).join('');
+            
+            // 載入潛力股票
+            const potentialContainer = document.getElementById('potential-stocks');
+            potentialContainer.innerHTML = samplePotentialStocks.map(stock => formatStockCard(stock, false)).join('');
+            
+            // 載入新聞
+            const newsContainer = document.getElementById('news-list');
+            newsContainer.innerHTML = sampleNews.map(news => formatNewsCard(news)).join('');
+        }
+        
+        function refreshData() {
+            document.getElementById('loading').style.display = 'block';
+            
+            // 模擬API呼叫延遲
+            setTimeout(() => {
+                loadData();
+                document.getElementById('loading').style.display = 'none';
+                
+                // 顯示更新成功提示
+                const updateTime = new Date().toLocaleTimeString('zh-TW', {hour12: false});
+                alert(`數據已更新完成！\n更新時間: ${updateTime}`);
+            }, 1500);
+        }
+        
+        // 頁面載入時初始化數據
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+    </script>
+</body>
+</html>
