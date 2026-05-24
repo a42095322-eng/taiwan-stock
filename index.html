@@ -261,33 +261,35 @@
         // 設置當前日期
         document.getElementById('current-date').textContent = new Date().toLocaleDateString('zh-TW');
         
+        const update_time = "2026-05-24 20:15:00";
+        
         // 即時股票數據（每日08:30自動更新）
         const sampleBullishStocks = [
             {
                 symbol: "2330",
                 name: "台積電",
-                price: 2185,
-                change: -20,
-                changePercent: -0.91,
-                reason: "全球先進製程晶圓代工龍頭，AI需求強勁，多家外資上修獲利預期，Q1配息7元創歷史新高",
-                tags: ["半導體", "AI概念", "權值股", "高股息"]
+                price: 2240,
+                change: 10,
+                changePercent: 0.45,
+                reason: "AI晶片需求強勁，黃仁勳訪台強化合作，外資預估AI營收年增率達60%，市值突破59兆元",
+                tags: ["半導體", "AI概念", "權值股", "外資買超"]
             },
             {
-                symbol: "3481",
-                name: "群創",
-                price: 23.65,
-                change: 2.15,
-                changePercent: 10.0,
-                reason: "面板級扇出型封裝FOPLP成功量產，獲國際客戶採用並宣布量產翻倍，轉型非顯示器業務成效顯著",
-                tags: ["面板", "先進封裝", "AI伺服器", "轉型題材"]
+                symbol: "3711",
+                name: "日月光投控",
+                price: 540,
+                change: 38,
+                changePercent: 7.57,
+                reason: "輝達Vera Rubin平台即將量產，先進封裝需求爆發，獲黃仁勳點名為關鍵供應鏈夥伴",
+                tags: ["封測", "先進封裝", "AI伺服器", "漲停股"]
             },
             {
                 symbol: "2454",
                 name: "聯發科",
-                price: 3550,
-                change: 320,
-                changePercent: 9.91,
-                reason: "5G晶片出貨成長，AI邊緣運算需求強勁，受惠超微在台投資100億美元計畫",
+                price: 3400,
+                change: 140,
+                changePercent: 4.29,
+                reason: "5G/6G晶片出貨成長，AI邊緣運算需求強勁，與輝達深化合作開發AI平台",
                 tags: ["IC設計", "5G概念", "AI邊緣運算", "手機晶片"]
             },
             {
@@ -296,71 +298,71 @@
                 price: 572,
                 change: 110,
                 changePercent: 23.81,
-                reason: "被動元件需求激增，AI伺服器及高效能運算推動營運成長，法人目標價上看500元",
+                reason: "被動元件需求激增，AI伺服器及高效能運算推動營運成長，市值達1.3兆元創新高",
                 tags: ["被動元件", "AI伺服器", "漲停股", "法人買超"]
             }
         ];
         
         const samplePotentialStocks = [
             {
-                symbol: "3711",
-                name: "日月光投控",
-                price: 150.28,
-                change: 7.68,
-                changePercent: 5.37,
-                reason: "受惠超微投資台灣半導體供應鏈，共同開發下一代2.5D橋接互連技術，先進封裝需求強勁",
-                tags: ["封測", "先進封裝", "半導體供應鏈", "外資買超"]
+                symbol: "3037",
+                name: "欣興",
+                price: 285.5,
+                change: 22.5,
+                changePercent: 8.55,
+                reason: "ABF載板供給吃緊，AI產品世代交替帶動尺寸與層數提升，價格有望上漲15-20%",
+                tags: ["ABF載板", "PCB", "AI硬體", "漲價題材"]
             },
             {
-                symbol: "2344",
-                name: "華邦電",
+                symbol: "3324",
+                name: "雙鴻",
+                price: 1250,
+                change: 85,
+                changePercent: 7.3,
+                reason: "AI ASIC客戶散熱訂單湧入，全年營收目標上修至年增70%，毛利率站穩30%以上",
+                tags: ["散熱", "AI伺服器", "營收上修", "成長股"]
+            },
+            {
+                symbol: "3481",
+                name: "群創",
                 price: 45.2,
                 change: 4.1,
                 changePercent: 9.98,
-                reason: "記憶體市場報價維持漲勢，受惠AI邊緣運算裝置普及，市場預期獲利將顯著上修",
-                tags: ["記憶體", "DRAM", "AI邊緣運算", "漲停股"]
-            },
-            {
-                symbol: "4919",
-                name: "新唐",
-                price: 185.5,
-                change: 16.8,
-                changePercent: 9.96,
-                reason: "AI伺服器BMC晶片出貨旺盛，第一季毛利率回升至39.3%，轉型AI伺服器供應鏈成效顯著",
-                tags: ["MCU", "BMC晶片", "AI伺服器", "轉型成功"]
+                reason: "面板級扇出型封裝FOPLP成功量產，轉型非顯示器業務成效顯著，獲國際客戶採用",
+                tags: ["面板", "先進封裝", "轉型題材", "漲停股"]
             }
         ];
         
         const sampleNews = [
             {
-                title: "台股飆漲創四萬二新高，AI與半導體齊發威",
+                title: "黃仁勳閃電抵台！提前近一周出席英偉達台北開發者大會",
+                source: "新浪財經",
+                time: "18:33",
+                impact: "正面"
+            },
+            {
+                title: "輝達預告新品量產，台灣AI供應鏈迎爆發成長",
                 source: "CMoney投資網誌",
-                time: "08:30",
+                time: "03:45",
                 impact: "正面"
             },
             {
-                title: "輝達與超微利多齊發，台股半導體供應鏈狂飆",
-                source: "CMoney",
-                time: "08:45",
+                title: "台股42000點震盪，電子強勢日月光投控飆漲停",
+                source: "中央社",
+                time: "11:11",
                 impact: "正面"
             },
             {
-                title: "今日漲停股AI與半導體先進封裝領軍",
-                source: "豐雲學堂",
-                time: "09:00",
+                title: "輝達報喜台股重返41300點，收漲1347點創史上第5大",
+                source: "中央社",
+                time: "14:17",
                 impact: "正面"
             },
             {
-                title: "台積電收在最低點，連二日失守月線",
-                source: "CMoney",
-                time: "09:15",
-                impact: "負面"
-            },
-            {
-                title: "真的有520行情嗎？「10檔概念股」搶先關注",
-                source: "CMoney官方",
-                time: "09:30",
-                impact: "中性"
+                title: "台股漲幅全球第二！供應鏈全面點火",
+                source: "Yahoo財經",
+                time: "04:21",
+                impact: "正面"
             }
         ];
         
@@ -421,7 +423,7 @@
         
         function loadData() {
             // 模擬數據載入
-            document.getElementById('last-update').textContent = `更新時間: ${new Date().toLocaleTimeString('zh-TW', {hour12: false})}`;
+            document.getElementById('last-update').textContent = `更新時間: ${update_time}`;
             
             // 載入看漲股票
             const bullishContainer = document.getElementById('bullish-stocks');
