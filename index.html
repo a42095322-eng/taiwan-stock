@@ -6,7 +6,23 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <script>(function(){var KEY='ts_v',CUR='2026-05-25_r4';if(localStorage.getItem(KEY)!==CUR){localStorage.setItem(KEY,CUR);var u=location.href;if(u.indexOf('?')===-1){location.replace(u+'?t='+Date.now())}}})();</script>
+    <script>
+// iOS Safari 快取終極解法：數據移到獨立 data.js，每次載入帶 timestamp 繞過快取
+(function(){
+    var s = document.createElement('script');
+    s.src = 'data.js?v=' + Date.now();
+    s.onload = function() {
+        if (typeof window.stockData === 'undefined') {
+            document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:18px;">數據載入中，請稍候...</div>';
+        }
+        document.dispatchEvent(new Event('stockDataReady'));
+    };
+    s.onerror = function() {
+        document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:18px;">數據載入失敗，請重整頁面。</div>';
+    };
+    document.head.appendChild(s);
+})();
+</script>
     <title>台股分析儀表板 - 每日潛力股推薦</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -265,146 +281,6 @@
         // 設置當前日期
         document.getElementById('current-date').textContent = new Date().toLocaleDateString('zh-TW');
         
-        const update_time = "2026-05-25 18:10:00";
-        
-        // 即時股票數據（每日08:30自動更新）
-        const sampleBullishStocks = [
-            {
-                        "symbol": "2330",
-                        "name": "台積電",
-                        "price": 2255,
-                        "change": 25,
-                        "changePercent": 1.12,
-                        "reason": "黃仁勳提前抵台強化合作，輝達Vera Rubin平台帶動先進製程需求，外資預估AI營收年增率達60%",
-                        "tags": [
-                                    "半導體",
-                                    "AI概念",
-                                    "權值股",
-                                    "外資買超"
-                        ]
-            },
-            {
-                        "symbol": "3711",
-                        "name": "日月光投控",
-                        "price": 561,
-                        "change": 51,
-                        "changePercent": 10.0,
-                        "reason": "輝達Vera Rubin平台即將量產，先進封裝需求爆發，獲黃仁勳點名為關鍵供應鏈夥伴，漲停鎖死",
-                        "tags": [
-                                    "封測",
-                                    "先進封裝",
-                                    "AI伺服器",
-                                    "漲停股"
-                        ]
-            },
-            {
-                        "symbol": "2454",
-                        "name": "聯發科",
-                        "price": 3860,
-                        "change": 310,
-                        "changePercent": 8.73,
-                        "reason": "5G/6G晶片出貨成長，AI邊緣運算需求強勁，與輝達深化合作開發AI平台，成交值居台股第一",
-                        "tags": [
-                                    "IC設計",
-                                    "5G概念",
-                                    "AI邊緣運算",
-                                    "手機晶片"
-                        ]
-            },
-            {
-                        "symbol": "2327",
-                        "name": "國巨",
-                        "price": 629,
-                        "change": 57,
-                        "changePercent": 9.97,
-                        "reason": "被動元件需求激增，AI伺服器及高效能運算推動營運成長，市值創新高，漲停鎖死",
-                        "tags": [
-                                    "被動元件",
-                                    "AI伺服器",
-                                    "漲停股",
-                                    "法人買超"
-                        ]
-            }
-];
-        
-        const samplePotentialStocks = [
-            {
-                        "symbol": "3037",
-                        "name": "欣興",
-                        "price": 970,
-                        "change": 65,
-                        "changePercent": 7.18,
-                        "reason": "ABF載板供給吃緊，AI產品世代交替帶動尺寸與層數提升，外資看好價格上漲15-20%",
-                        "tags": [
-                                    "ABF載板",
-                                    "PCB",
-                                    "AI硬體",
-                                    "漲價題材"
-                        ]
-            },
-            {
-                        "symbol": "3324",
-                        "name": "雙鴻",
-                        "price": 1170,
-                        "change": 50,
-                        "changePercent": 4.46,
-                        "reason": "AI ASIC客戶散熱訂單湧入，全年營收目標上修至年增70%，毛利率站穩30%以上",
-                        "tags": [
-                                    "散熱",
-                                    "AI伺服器",
-                                    "營收上修",
-                                    "成長股"
-                        ]
-            },
-            {
-                        "symbol": "3481",
-                        "name": "群創",
-                        "price": 44.65,
-                        "change": 4.05,
-                        "changePercent": 9.98,
-                        "reason": "面板級扇出型封裝FOPLP成功量產，轉型非顯示器業務成效顯著，獲國際客戶採用，漲停鎖死",
-                        "tags": [
-                                    "面板",
-                                    "先進封裝",
-                                    "轉型題材",
-                                    "漲停股"
-                        ]
-            }
-];
-        
-        const sampleNews = [
-            {
-                        "title": "黃仁勳：Vera 將是台灣供應鏈史上最大規模產品，台鏈下半年會很忙",
-                        "source": "Yahoo財經",
-                        "time": "06:22",
-                        "impact": "正面"
-            },
-            {
-                        "title": "台股上周漲1095點站上42267點創收盤新高，距歷史高僅140點",
-                        "source": "鉅亨網",
-                        "time": "11:34",
-                        "impact": "正面"
-            },
-            {
-                        "title": "黃仁勳來台助攻台股，投顧：聚焦AI概念股",
-                        "source": "中央社",
-                        "time": "09:42",
-                        "impact": "正面"
-            },
-            {
-                        "title": "台股22日強彈899點，聯發科、國巨、日月光同步漲停",
-                        "source": "中央社",
-                        "time": "14:30",
-                        "impact": "正面"
-            },
-            {
-                        "title": "黃仁勳閃電抵台，GTC主題演講6/1登場，廣達華碩台積電高層助陣",
-                        "source": "經濟日報",
-                        "time": "16:16",
-                        "impact": "正面"
-            }
-];
-        
         function formatStockCard(stock, isBullish = true) {
             const changeClass = stock.change >= 0 ? 'positive' : 'negative';
             const changeSign = stock.change >= 0 ? '+' : '';
@@ -461,20 +337,17 @@
         }
         
         function loadData() {
-            // 模擬數據載入
-            document.getElementById('last-update').textContent = `更新時間: ${update_time}`;
+            var d = window.stockData || {};
+            document.getElementById('last-update').textContent = '更新時間: ' + (d.update_time || '--');
             
-            // 載入看漲股票
-            const bullishContainer = document.getElementById('bullish-stocks');
-            bullishContainer.innerHTML = sampleBullishStocks.map(stock => formatStockCard(stock, true)).join('');
+            var bullishContainer = document.getElementById('bullish-stocks');
+            bullishContainer.innerHTML = (d.sampleBullishStocks || []).map(function(stock) { return formatStockCard(stock, true); }).join('');
             
-            // 載入潛力股票
-            const potentialContainer = document.getElementById('potential-stocks');
-            potentialContainer.innerHTML = samplePotentialStocks.map(stock => formatStockCard(stock, false)).join('');
+            var potentialContainer = document.getElementById('potential-stocks');
+            potentialContainer.innerHTML = (d.samplePotentialStocks || []).map(function(stock) { return formatStockCard(stock, false); }).join('');
             
-            // 載入新聞
-            const newsContainer = document.getElementById('news-list');
-            newsContainer.innerHTML = sampleNews.map(news => formatNewsCard(news)).join('');
+            var newsContainer = document.getElementById('news-list');
+            newsContainer.innerHTML = (d.sampleNews || []).map(function(news) { return formatNewsCard(news); }).join('');
         }
         
         function refreshData() {
@@ -491,9 +364,13 @@
             }, 1500);
         }
         
-        // 頁面載入時初始化數據
+        // 頁面載入時初始化數據（等待 data.js 載入完成）
         document.addEventListener('DOMContentLoaded', function() {
-            loadData();
+            if (window.stockData) {
+                loadData();
+            } else {
+                document.addEventListener('stockDataReady', loadData);
+            }
         });
     </script>
 </body>
