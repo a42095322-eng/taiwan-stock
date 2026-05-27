@@ -1,277 +1,139 @@
 window.stockData = {
-  update_time: "2026-05-25 22:14:29",
-  index: {
-    price: 43644.4,
-    change: 1376.43,
-    changePercent: 3.26
+  update_time: "2026-05-27 14:30",
+  market_summary: {
+    index: "加權指數",
+    price: 44256.8,
+    change: 731.43,
+    changePercent: 1.68,
+    high: 44818.25,
+    low: 43842.26,
+    volume: 15568.44,
+    note: "盤中創歷史新高44818.25點，收盤創新高，成交值1.56兆元創天量"
   },
   sampleBullishStocks: [
     {
-        "symbol": "2383",
-        "name": "台光電",
-        "price": 5505.0,
-        "change": 500.0,
-        "changePercent": 9.99,
-        "reason": "今日大漲 +9.99%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
+      symbol: "2330",
+      name: "台積電",
+      price: 2300,
+      change: 30,
+      changePercent: 1.32,
+      reason: "AI晶片龍頭，受惠輝達擴大投資台灣，先進製程訂單滿載，外資持續買超，股價穩健上漲",
+      tags: ["AI", "權值", "半導體", "外資買超"]
     },
     {
-        "symbol": "3711",
-        "name": "日月光投控",
-        "price": 617.0,
-        "change": 56.0,
-        "changePercent": 9.98,
-        "reason": "今日大漲 +9.98%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
+      symbol: "2454",
+      name: "聯發科",
+      price: 4640,
+      change: 375,
+      changePercent: 8.79,
+      reason: "AI手機晶片需求強勁，天璣9400獲市場好評，外資目標價持續上調，股價再創歷史新高",
+      tags: ["AI", "漲停", "權值", "IC設計"]
     },
     {
-        "symbol": "2353",
-        "name": "宏碁",
-        "price": 32.5,
-        "change": 2.95,
-        "changePercent": 9.98,
-        "reason": "今日大漲 +9.98%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
+      symbol: "2303",
+      name: "聯電",
+      price: 143.5,
+      change: 13.05,
+      changePercent: 10.0,
+      reason: "聯電ADR大漲17%帶動，28奈米成熟製程需求回溫，獲外資連日買超，股價漲停鎖死創新高",
+      tags: ["漲停", "半導體", "成熟製程", "外資買超"]
     },
     {
-        "symbol": "2454",
-        "name": "聯發科",
-        "price": 4245.0,
-        "change": 385.0,
-        "changePercent": 9.97,
-        "reason": "今日大漲 +9.97%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
+      symbol: "2308",
+      name: "台達電",
+      price: 2520,
+      change: 170,
+      changePercent: 7.23,
+      reason: "AI電源管理龍頭，受惠資料中心與AI伺服器需求，營收獲利持續成長，股價再創歷史新高",
+      tags: ["AI", "電源", "權值", "伺服器"]
     },
     {
-        "symbol": "3481",
-        "name": "群創",
-        "price": 49.1,
-        "change": 4.45,
-        "changePercent": 9.97,
-        "reason": "今日大漲 +9.97%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
-    },
-    {
-        "symbol": "2002",
-        "name": "中鋼",
-        "price": 19.95,
-        "change": 1.8,
-        "changePercent": 9.92,
-        "reason": "今日大漲 +9.92%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
-    },
-    {
-        "symbol": "2409",
-        "name": "友達",
-        "price": 24.4,
-        "change": 2.2,
-        "changePercent": 9.91,
-        "reason": "今日大漲 +9.91%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
-    },
-    {
-        "symbol": "2327",
-        "name": "國巨",
-        "price": 691.0,
-        "change": 62.0,
-        "changePercent": 9.86,
-        "reason": "今日大漲 +9.86%，多頭強勢表態突破壓力區間",
-        "tags": [
-            "漲停",
-            "強勢",
-            "放量上攻",
-            "多頭"
-        ]
+      symbol: "2327",
+      name: "國巨",
+      price: 691,
+      change: 39.4,
+      changePercent: 6.05,
+      reason: "被動元件龍頭，AI鉭質電容需求爆發，高階產品供不應求，股價大漲逾半根停板",
+      tags: ["被動元件", "AI", "漲停", "高階元件"]
     }
-],
+  ],
   samplePotentialStocks: [
     {
-        "symbol": "2303",
-        "name": "聯電",
-        "price": 125.0,
-        "change": 11.0,
-        "changePercent": 9.65,
-        "reason": "漲幅 +9.65% 成交量 337,925張，法人資金持續流入",
-        "tags": [
-            "爆量",
-            "帶量",
-            "法人買超",
-            "潛力"
-        ]
+      symbol: "6488",
+      name: "環球晶",
+      price: 788,
+      change: 71.6,
+      changePercent: 10.0,
+      reason: "矽晶圓龍頭，受惠AI半導體材料需求，2026-2027年供需轉緊，外資目標價上看550元，股價漲停",
+      tags: ["矽晶圓", "AI材料", "漲停", "半導體材料"]
     },
     {
-        "symbol": "2317",
-        "name": "鴻海",
-        "price": 261.0,
-        "change": 11.0,
-        "changePercent": 4.4,
-        "reason": "漲幅 +4.40% 成交量 118,569張，法人資金持續流入",
-        "tags": [
-            "爆量",
-            "帶量",
-            "法人買超",
-            "潛力"
-        ]
+      symbol: "3037",
+      name: "欣興",
+      price: 363,
+      change: 30,
+      changePercent: 9.01,
+      reason: "ABF載板三雄之一，AI GPU載板需求跳躍式成長，高階ABF載板預計缺貨至2030年，股價再創新高",
+      tags: ["ABF載板", "AI", "漲停", "PCB"]
     },
     {
-        "symbol": "2892",
-        "name": "第一金",
-        "price": 27.6,
-        "change": 0.05,
-        "changePercent": 0.18,
-        "reason": "小漲 +0.18% 成交量 79,146張，籌碼穩定具補漲空間",
-        "tags": [
-            "帶量",
-            "整理",
-            "潛力"
-        ]
+      symbol: "3189",
+      name: "景碩",
+      price: 228.5,
+      change: 20.77,
+      changePercent: 10.0,
+      reason: "ABF載板三雄，受惠AI晶片載板需求，營運復甦動能強勁，股價漲停創近4年新高",
+      tags: ["ABF載板", "AI", "漲停", "半導體"]
     },
     {
-        "symbol": "2377",
-        "name": "微星",
-        "price": 127.0,
-        "change": 3.0,
-        "changePercent": 2.42,
-        "reason": "漲幅 +2.42% 成交量 78,951張，法人資金持續流入",
-        "tags": [
-            "帶量",
-            "法人買超",
-            "潛力"
-        ]
+      symbol: "2344",
+      name: "華邦電",
+      price: 155,
+      change: 14.09,
+      changePercent: 10.0,
+      reason: "記憶體族群受美光飆漲激勵，連續第2天漲停，AI帶動記憶體需求，股價創歷史新高",
+      tags: ["記憶體", "漲停", "AI", "美光概念"]
     },
     {
-        "symbol": "3231",
-        "name": "緯創",
-        "price": 149.0,
-        "change": 4.5,
-        "changePercent": 3.11,
-        "reason": "漲幅 +3.11% 成交量 68,561張，法人資金持續流入",
-        "tags": [
-            "帶量",
-            "法人買超",
-            "潛力"
-        ]
-    },
-    {
-        "symbol": "2882",
-        "name": "國泰金",
-        "price": 81.5,
-        "change": 1.8,
-        "changePercent": 2.26,
-        "reason": "漲幅 +2.26% 成交量 48,677張，法人資金持續流入",
-        "tags": [
-            "法人買超",
-            "潛力"
-        ]
-    },
-    {
-        "symbol": "2881",
-        "name": "富邦金",
-        "price": 97.7,
-        "change": 2.6,
-        "changePercent": 2.73,
-        "reason": "漲幅 +2.73% 成交量 46,733張，法人資金持續流入",
-        "tags": [
-            "法人買超",
-            "潛力"
-        ]
-    },
-    {
-        "symbol": "2382",
-        "name": "廣達",
-        "price": 316.5,
-        "change": 0.5,
-        "changePercent": 0.16,
-        "reason": "小漲 +0.16% 成交量 46,023張，籌碼穩定具補漲空間",
-        "tags": [
-            "整理",
-            "潛力"
-        ]
+      symbol: "3711",
+      name: "日月光投控",
+      price: 2520,
+      change: 170,
+      changePercent: 7.23,
+      reason: "封測龍頭，受惠AI先進封裝需求，CoWoS產能滿載，股價大漲逾半根停板",
+      tags: ["封測", "AI", "先進封裝", "權值"]
     }
-],
+  ],
   sampleNews: [
     {
-        "title": "台股加權指數大漲3.26%收43644點，創波段新高",
-        "time": "2026-05-25 22:14",
-        "source": "Yahoo Finance",
-        "impact": "high"
+      title: "權值股領軍價量同創新高 台股漲731點收44256點",
+      time: "2026-05-27 15:06",
+      source: "中央社",
+      impact: "high"
     },
     {
-        "title": "AI概念股持續發燒，台積電領軍半導體族群全面上攻",
-        "time": "2026-05-25 22:14",
-        "source": "鉅亨網",
-        "impact": "high"
+      title: "台股創歷史新高，躍升全球第五大股市！這3大強勢族群，籌碼K線帶你看法人與大戶動向",
+      time: "2026-05-27 09:30",
+      source: "CMoney投資網誌",
+      impact: "high"
     },
     {
-        "title": "外資連三日買超台股，新台幣升值帶動資金回流",
-        "time": "2026-05-25 22:14",
-        "source": "經濟日報",
-        "impact": "high"
+      title: "台股暴漲千點",
+      time: "2026-05-27 09:06",
+      source: "東方財富網",
+      impact: "high"
     },
     {
-        "title": "美股費半指數創歷史新高，帶動台灣半導體供應鏈",
-        "time": "2026-05-25 22:14",
-        "source": "工商時報",
-        "impact": "medium"
+      title: "台股狂飆破4萬點！他萌生辭職念頭…",
+      time: "2026-05-27 12:30",
+      source: "FTNN",
+      impact: "medium"
     },
     {
-        "title": "台股成交量能突破5000億，站穩月線之上",
-        "time": "2026-05-25 22:14",
-        "source": "MoneyDJ",
-        "impact": "medium"
-    },
-    {
-        "title": "金控獲利創同期新高，金融股成資金避風港",
-        "time": "2026-05-25 22:14",
-        "source": "自由財經",
-        "impact": "medium"
-    },
-    {
-        "title": "電子零組件缺料緩解，下游組裝廠毛利回升",
-        "time": "2026-05-25 22:14",
-        "source": "Digitimes",
-        "impact": "medium"
-    },
-    {
-        "title": "外資調升台股目標價，看好下半年旺季行情",
-        "time": "2026-05-25 22:14",
-        "source": "彭博社",
-        "impact": "medium"
+      title: "訂單滿到2030年！「機器人這檔」觸漲停邁向連6紅…",
+      time: "2026-05-27 12:20",
+      source: "FTNN",
+      impact: "medium"
     }
-]
+  ]
 };
