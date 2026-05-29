@@ -1,216 +1,153 @@
 window.stockData = {
-  "update_time": "2026-05-28 18:30",
-  "market_summary": {
-    "index": "加權指數",
-    "price": 43636.44,
-    "change": -620.36,
-    "changePercent": -1.4,
-    "open": 44240.8,
-    "high": 44954.09,
-    "low": 43236.36,
-    "volume": "1.59兆",
-    "note": "盤中創44954歷史新高後急殺，高低震盪1717點，美伊衝突升溫引發賣壓"
+  update_time: "2026-05-29 17:30:00",
+  market_summary: {
+    index: "加權指數",
+    price: 44732.94,
+    change: 1096.50,
+    changePercent: 2.51,
+    high: 44933.95,
+    low: 43815.48,
+    volume: "1.81兆元",
+    ytdReturn: 54.45
   },
-  "sampleBullishStocks": [
+  sampleBullishStocks: [
     {
-      "symbol": "6239",
-      "name": "力成",
-      "price": 357.5,
-      "change": 17.0,
-      "changePercent": 4.99,
-      "reason": "封測族群逆勢走強，南茂漲停帶動封測股集體上攻，力成同步受惠資金轉進",
-      "tags": [
-        "封測",
-        "半導體",
-        "逆勢上漲",
-        "量大強漲"
-      ]
+      symbol: "2330",
+      name: "台積電",
+      price: 2355,
+      change: 60,
+      changePercent: 2.61,
+      reason: "AI半導體龍頭，盤中創2375新天價，貢獻大盤636點，外資強力回補",
+      tags: ["AI", "半導體", "權值股", "創新高"]
     },
     {
-      "symbol": "6116",
-      "name": "彩晶",
-      "price": 15.55,
-      "change": 1.05,
-      "changePercent": 7.24,
-      "reason": "面板族群今日交投熱絡，群創、友達、彩晶同步放量，彩晶漲幅居面板三雄之冠",
-      "tags": [
-        "面板",
-        "光電",
-        "放量上攻",
-        "低價轉強"
-      ]
+      symbol: "2317",
+      name: "鴻海",
+      price: 289,
+      change: 26.5,
+      changePercent: 10.0,
+      reason: "攻上漲停創19年新高，AI基礎設施支出雙位數成長預期，Computex題材加持",
+      tags: ["AI伺服器", "漲停", "權值股", "創新高"]
     },
     {
-      "symbol": "2330",
-      "name": "台積電",
-      "price": 2295.0,
-      "change": -5.0,
-      "changePercent": -0.22,
-      "reason": "大盤重挫620點下僅小跌0.22%，尾盤買盤進駐支撐，AI晶片需求持續強勁，輝達在台投資上看1500億美元",
-      "tags": [
-        "權值股",
-        "AI晶片",
-        "護盤指標",
-        "外資青睞"
-      ]
+      symbol: "2382",
+      name: "廣達",
+      price: 339,
+      change: 30.8,
+      changePercent: 10.0,
+      reason: "漲停鎖死，股東會宣示AI伺服器訂單能見度直通2027年，ASIC專案倍數放量",
+      tags: ["AI伺服器", "漲停", "Computex"]
     },
     {
-      "symbol": "2317",
-      "name": "鴻海",
-      "price": 263.0,
-      "change": -1.0,
-      "changePercent": -0.38,
-      "reason": "大盤震盪中僅小跌0.38%，AI伺服器出貨動能強勁，COMPUTEX展前市場關注度升溫",
-      "tags": [
-        "AI伺服器",
-        "權值股",
-        "抗跌",
-        "COMPUTEX"
-      ]
+      symbol: "5274",
+      name: "信驊",
+      price: 18950,
+      change: 1115,
+      changePercent: 6.25,
+      reason: "股王創歷史新高19305，BMC晶片需求受AI伺服器擴產帶動持續升溫",
+      tags: ["千金股", "BMC", "AI", "創新高"]
     },
     {
-      "symbol": "2303",
-      "name": "聯電",
-      "price": 142.0,
-      "change": -1.5,
-      "changePercent": -1.05,
-      "reason": "聯電ADR前日大漲5.41%，晶圓代工需求延續，半導體族群資金轉進明顯",
-      "tags": [
-        "晶圓代工",
-        "ADR連動",
-        "半導體",
-        "資金轉進"
-      ]
+      symbol: "8454",
+      name: "富邦媒",
+      price: 210,
+      change: 19,
+      changePercent: 9.95,
+      reason: "近漲停，電商旺季題材發酵，資金輪動至內需消費股",
+      tags: ["電商", "內需", "漲幅前五"]
+    },
+    {
+      symbol: "6770",
+      name: "力積電",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "Q1 EPS 3.36元季增2340%，4月營收年增32.46%，轉單效益+AI邊緣裝置晶片復甦",
+      tags: ["轉機股", "半導體", "代工", "成交量前五"]
     }
   ],
-  "samplePotentialStocks": [
+  samplePotentialStocks: [
     {
-      "symbol": "2454",
-      "name": "聯發科",
-      "price": 4410.0,
-      "change": -230.0,
-      "changePercent": -4.96,
-      "reason": "AI從生成式走向Agentic AI，聯發科為AI邊緣運算核心受惠股，回檔後本益比更具吸引力",
-      "tags": [
-        "AI邊緣運算",
-        "IC設計",
-        "高價股",
-        "回檔布局"
-      ]
+      symbol: "2327",
+      name: "國巨",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "被動元件龍頭，4月營收140.39億，AI訂單能見度直達年底，車用工控高毛利轉型",
+      tags: ["被動元件", "AI", "車用", "基本面"]
     },
     {
-      "symbol": "2308",
-      "name": "台達電",
-      "price": 2390.0,
-      "change": -130.0,
-      "changePercent": -5.16,
-      "reason": "電源管理與散熱解決方案龍頭，AI資料中心擴建帶動長期需求，短線回檔為技術性修正",
-      "tags": [
-        "電源管理",
-        "AI散熱",
-        "綠能",
-        "回檔布局"
-      ]
+      symbol: "2356",
+      name: "英業達",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "Q1營收首破2000億年增28%，伺服器營收比重過半，墨西哥新廠投產",
+      tags: ["AI伺服器", "營收創高", "擴產"]
     },
     {
-      "symbol": "2383",
-      "name": "台光電",
-      "price": 5055.0,
-      "change": -250.0,
-      "changePercent": -4.71,
-      "reason": "AI伺服器PCB材料主力供應商，COMPUTEX展前市場關注度高，回檔後具反彈空間",
-      "tags": [
-        "PCB材料",
-        "AI伺服器",
-        "COMPUTEX",
-        "高價股"
-      ]
+      symbol: "2408",
+      name: "南亞科",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "記憶體族群法人連續買超，Q1 EPS創高，AI帶動HBM需求外溢至標準型DRAM",
+      tags: ["記憶體", "法人買超", "EPS創高"]
     },
     {
-      "symbol": "3711",
-      "name": "日月光投控",
-      "price": 627.0,
-      "change": -15.0,
-      "changePercent": -2.34,
-      "reason": "全球封測龍頭，AI晶片封裝需求持續擴張，先進封裝產能滿載，中長線成長趨勢明確",
-      "tags": [
-        "封測龍頭",
-        "先進封裝",
-        "AI供應鏈",
-        "產能滿載"
-      ]
+      symbol: "2303",
+      name: "聯電",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "首季EPS+4月營收雙增，三大法人連兩周加碼，成熟製程需求回溫",
+      tags: ["晶圓代工", "營收雙增", "法人買超"]
     },
     {
-      "symbol": "6669",
-      "name": "緯穎",
-      "price": 4950.0,
-      "change": -125.0,
-      "changePercent": -2.46,
-      "reason": "雲端伺服器ODM大廠，AI伺服器出貨佔比持續提升，資料中心資本支出擴張直接受惠",
-      "tags": [
-        "雲端伺服器",
-        "AI基礎建設",
-        "ODM",
-        "高價股"
-      ]
+      symbol: "2383",
+      name: "台光電",
+      price: null,
+      change: null,
+      changePercent: null,
+      reason: "Q1 EPS創高+4月營收佳，AI伺服器PCB材料核心供應商，三大法人持續買超",
+      tags: ["PCB", "AI伺服器", "EPS創高"]
     }
   ],
-  "sampleNews": [
+  sampleNews: [
     {
-      "title": "台股創高後帶量下殺跌620點 留上影線713點守住5日線",
-      "time": "2026-05-28 15:12",
-      "source": "經濟日報",
-      "impact": "negative",
-      "summary": "美伊軍事衝突再次升高，台股早盤上攻至44954點歷史新高後急殺，最低下探43236點，高低震盪達1717點，終場收在43636.44點。"
+      title: "台股大漲1096點創收盤新高44732.94，成交1.81兆天量",
+      time: "2026-05-29 15:01",
+      source: "鉅亨網",
+      impact: "high",
+      summary: "加權指數終場大漲1096.5點或2.51%，收報44732.94點再寫收盤新高，MSCI季度調整尾盤爆1.81兆驚天大量。三大法人合計買超1018.78億元，外資回補803億。"
     },
     {
-      "title": "聯電ADR大漲5.41% 台股半導體族群表現同步走強",
-      "time": "2026-05-28 13:59",
-      "source": "CMoney",
-      "impact": "positive",
-      "summary": "美股三大指數創高帶動台股ADR全面收紅，聯電ADR單日上漲5.41%，高於台積電ADR的2.52%。台指期夜盤因此續揚445點。"
+      title: "黃仁勳兆元宴加持 Computex即將登場，AI權值股帶頭衝",
+      time: "2026-05-29 15:21",
+      source: "金吾財訊",
+      impact: "high",
+      summary: "輝達執行長黃仁勳與供應鏈高管晚宴，電子科技類股漲2.7%、技術服務類股暴漲5.9%。Computex 2026下週登場，AI PC與邊緣AI預期迎實質拉貨潮。"
     },
     {
-      "title": "台股掀1700點巨浪！封測「技能滿點」變身避風港 南茂噴11萬張鎖漲停",
-      "time": "2026-05-28 13:44",
-      "source": "經濟日報",
-      "impact": "positive",
-      "summary": "台股28日高低震盪超過1700點，多數電子股在賣壓衝擊下翻黑，但封測族群逆勢成為盤面抗震焦點，南茂鎖漲停。"
+      title: "緯穎示警AI資料中心供應鏈短缺擴散，關鍵零組件面臨短缺",
+      time: "2026-05-29 05:10",
+      source: "鉅亨網",
+      impact: "medium",
+      summary: "緯穎(6669)警示AI資料中心供應鏈瓶頸不再局限於記憶體晶片，未來數年網通晶片等關鍵零組件都可能短缺，進一步推升全球AI基礎建設成本。"
     },
     {
-      "title": "Nvidia宣布在台投資上看1500億美元 台積電等晶片股走強",
-      "time": "2026-05-27 22:00",
-      "source": "CNBC",
-      "impact": "positive",
-      "summary": "輝達執行長黃仁勳宣布將在台灣建設新園區，年度支出從100-150億美元提升至1500億美元，台灣加權指數週三收盤創歷史新高。"
+      title: "台積電盤中創2375新天價，市值衝61.58兆元",
+      time: "2026-05-29 11:02",
+      source: "中央社",
+      impact: "high",
+      summary: "台積電盤中攻上2375元再創新天價，市值攀升至61.58兆元，貢獻大盤636點。鴻海、台達電、廣達等電子權值股同步走高。"
     },
     {
-      "title": "台股市值超越印度 躍升全球第五大股票市場",
-      "time": "2026-05-26 17:10",
-      "source": "財聯社",
-      "impact": "positive",
-      "summary": "台灣股市市值達4.95兆美元，超越印度成為全球第五大股票市場。台積電佔台股指數市值42%，今年以來股價已上漲49%。"
-    },
-    {
-      "title": "COMPUTEX倒數！主力瘋搶AI伺服器、高速傳輸與網通設備四大主流",
-      "time": "2026-05-28 17:37",
-      "source": "鉅亨網",
-      "impact": "positive",
-      "summary": "隨著COMPUTEX展即將登場，市場對AI伺服器、高速傳輸與網通設備相關族群關注度持續升高，主力資金提前布局。"
-    },
-    {
-      "title": "6月台股期指跌952點 外資期現貨同步調節",
-      "time": "2026-05-28 15:00",
-      "source": "經濟日報",
-      "impact": "negative",
-      "summary": "台北股市終場跌620.36點收43636.44點，6月台指期跌952點。美伊衝突升溫引發獲利了結賣壓。"
-    },
-    {
-      "title": "富邦期貨：台指期夜盤突破45000點 多方格局未變",
-      "time": "2026-05-28 08:30",
-      "source": "富邦期貨",
-      "impact": "positive",
-      "summary": "美伊談判進展升溫，油價大跌逾5%，台指期夜盤上漲455點收在45239點突破45000點大關，AI供應鏈仍是多頭主軸。"
+      title: "美國正式公告對台非半導體232關稅優惠，汽車零組件稅率降至15%",
+      time: "2026-05-29 11:02",
+      source: "中央社",
+      impact: "medium",
+      summary: "美國於聯邦公報正式公告對台灣非半導體232關稅優惠措施，汽車零組件輸美稅率降至15%，激勵汽車類股指數勁揚逾3%。"
     }
   ]
 };
